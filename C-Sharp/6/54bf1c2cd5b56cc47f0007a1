@@ -1,0 +1,47 @@
+// https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1
+// This can be solved with using of LINQ grouping. Well..
+// Это могло быть решено одной строкой через LINQ. Однако я сделал так.
+
+using System;
+using System.Collections.Generic;
+
+public class Kata
+{
+
+    /**
+     * List of chars that found in string.
+     */
+    private static List<char> _foundedChars;
+
+    /*
+     * List of chars that added to result number.
+     */
+    private static List<char> _addedChars;
+
+  public static int DuplicateCount(string str)
+    {
+        _foundedChars = new List<char>();
+        _addedChars = new List<char>();
+        int result = 0;
+
+        foreach (char origCharacter in str)
+        {
+            char c = char.ToLower(origCharacter);
+
+            if (_foundedChars.Contains(c))
+            {
+                if (!_addedChars.Contains(c))
+                {
+                    _addedChars.Add(c);
+                    result++;
+                }
+            }
+            else
+            {
+                _foundedChars.Add(c);
+            }
+        }
+
+        return result;
+    }
+}
